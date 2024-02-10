@@ -75,8 +75,22 @@ namespace Calculator
                         break;
                     case 4: //Divide
                         temp = Convert.ToDouble(num1) / Convert.ToDouble(num2);
-                        Console.WriteLine("{0} / {1} = {2}",
-                                           num1, num2, num1 = Convert.ToString(temp.ToString("0.##")));
+                        if(Double.IsNaN(temp))
+                        {
+                            Console.WriteLine("Result is Undefined. Resetting...");
+                            num1 = null;
+                            num2 = null;
+                        } else if (Double.IsInfinity(temp))
+                        {
+                            Console.WriteLine("Result is Infinity. Resetting...");
+                            num1 = null;
+                            num2 = null;
+                        } else
+                        {
+                            Console.WriteLine("{0} / {1} = {2}",
+                                               num1, num2, num1 = Convert.ToString(temp.ToString("0.##")));
+                        }
+
                         break;
                     case 5:
 
