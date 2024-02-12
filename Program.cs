@@ -51,8 +51,7 @@ namespace Calculator
                 Console.WriteLine("1 - Add\n" +
                                   "2 - Subtract\n" +
                                   "3 - Multiply\n" +
-                                  "4 - Divide\n" +
-                                  "5 - Exit");
+                                  "4 - Divide");
 
                 Console.Write("Choice: ");
                 choice = Convert.ToInt32(Console.ReadLine());
@@ -74,34 +73,27 @@ namespace Calculator
                                            num1, num2, num1 = Convert.ToString(temp.ToString("0.##")));
                         break;
                     case 4: //Divide
-                        temp = Convert.ToDouble(num1) / Convert.ToDouble(num2);
-                        if(Double.IsNaN(temp))
+                        if(Convert.ToDouble(num2) != 0)
                         {
-                            Console.WriteLine("Result is Undefined. Resetting...");
-                            num1 = null;
-                            num2 = null;
-                        } else if (Double.IsInfinity(temp))
-                        {
-                            Console.WriteLine("Result is Infinity. Resetting...");
-                            num1 = null;
-                            num2 = null;
+                            temp = Convert.ToDouble(num1) * Convert.ToDouble(num2);
+                            Console.WriteLine("{0} / {1} = {2}",
+                                                num1, num2, num1 = Convert.ToString(temp.ToString("0.##")));
                         } else
                         {
-                            Console.WriteLine("{0} / {1} = {2}",
-                                               num1, num2, num1 = Convert.ToString(temp.ToString("0.##")));
+                            Console.WriteLine("Result is undefined. Resetting...");
+                            num1 = null;
+                            num2 = null;
                         }
 
                         break;
-                    case 5:
-
                     default:
-                        Console.WriteLine("Resetting");
+                        Console.WriteLine("Operation does not exist. Resetting...");
                         num1 = null;
                         num2 = null;
                         break;
                 }
 
-            } while (choice != 5);
+            } while (true);
         }
 
     }
